@@ -1,17 +1,40 @@
 @import "../../styles/mixins.scss";
 
-.mainWrapper {
+
+.wrapper {
   @include inputWrapper;
 }
 
-.withoutTypePassword {
-  @include width100Height100;
+.inputText  {
+  width: 100%;
+  height: 100%;
   font-size: 20px;
   padding: 10px;
 }
 
+.mainWrapper {
+  @include inputWrapper;
+}
+
 .inputWithIconFlexContainer {
   @include columnFlexCenterWithoutAlign;
+}
+
+.input {
+  @include rowFlexCenter;
+  gap: 8px;
+
+  .icon {
+    background-color: #3b3b3b;
+  }
+
+  .field {
+    @include width100Height100;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    border: 1px solid lightblue;
+  }
 }
 
 .button {
@@ -35,18 +58,3 @@
   }
 }
 
-.input {
-  @include rowFlexCenter;
-  gap: 8px;
-
-  .icon {
-    background-color: #3b3b3b;
-  }
-
-  .field {
-    @include width100Height100;
-    font-size: 20px;
-    padding: 10px;
-    border: none;
-  }
-}
