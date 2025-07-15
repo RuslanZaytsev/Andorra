@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf22ad20-50d7-4771-8ee3-ca090e6b4fdc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/page.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/components/CustomInput/CustomInput.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/Input/Input.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/components/CustomInput/CustomInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/Input/Input.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/components/PasswordInput/PasswordInput.module.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/components/PasswordInput/PasswordInput.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/components/PasswordInput/task.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/Icons/EyeClose.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Icons/EyeClose.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/Icons/EyeOpen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Icons/EyeOpen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/components/Input/Input.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/Input/Input.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/components/Input/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/Input/Input.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,15 +41,7 @@
   }
 }</component>
   <component name="GitHubPullRequestState">{
-  &quot;prStates&quot;: [
-    {
-      &quot;id&quot;: {
-        &quot;id&quot;: &quot;PR_kwDOOtc0ZM6XH7i9&quot;,
-        &quot;number&quot;: 2
-      },
-      &quot;lastSeen&quot;: 1747950289594
-    }
-  ]
+  &quot;prStates&quot;: []
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
@@ -123,7 +116,9 @@
       <workItem from="1748267760238" duration="4244000" />
       <workItem from="1748547002779" duration="17000" />
       <workItem from="1748547028278" duration="49000" />
-      <workItem from="1750070547453" duration="4579000" />
+      <workItem from="1750070547453" duration="5080000" />
+      <workItem from="1750165004108" duration="606000" />
+      <workItem from="1752586592840" duration="12399000" />
     </task>
     <servers />
   </component>

@@ -4,13 +4,11 @@ import styles from "./page.module.css";
 export default function Home() {
     return (
         <div className={styles.page}>
-            <main className={styles.main}>
-                <Input type={"password"} passDifficultylevel={true}/>
-                <Input type={"password"} passDifficultylevel={false}/>
-                <Input type={"text"} passDifficultylevel={true}/>
-                <Input type={"number"} passDifficultylevel={true}/>
-            </main>
+            <Input type={'text'} placeholder={'текстовый инпут'}/>
+            <Input type={'number'} placeholder={'введите число'}/>
+            <Input type={'password'} passDifficultylevel={true}/>
         </div>
-    );
+    )
+        ;
 }
 //
