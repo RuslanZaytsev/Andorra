@@ -1,6 +1,5 @@
 'use client'
 
-
 import {ChangeEvent} from "react";
 import styles from './StateInput.module.scss'
 import {TValue} from "@/shared/components/StateInput/types";

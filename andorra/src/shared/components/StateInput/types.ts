@@ -1,4 +1,1 @@
-export type TValue
-{
-    value: string | number;
-}
+export type TValue = string | number;

@@ -1,6 +1,5 @@
 'use client'
 
-
 import {Input} from "@/shared/components/Input/Input";
 import styles from "./page.module.css";
 import {StateInput} from "@/shared/components/StateInput/StateInput";

@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf22ad20-50d7-4771-8ee3-ca090e6b4fdc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/shared/components/StateInput/StateInput.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/components/StateInput/StateInput.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shared/components/StateInput/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/components/StateInput/StateInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/StateInput/StateInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/components/StateInput/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/StateInput/types.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +119,7 @@
       <workItem from="1750070547453" duration="5080000" />
       <workItem from="1750165004108" duration="606000" />
       <workItem from="1752586592840" duration="12399000" />
-      <workItem from="1752674997508" duration="5253000" />
+      <workItem from="1752674997508" duration="7075000" />
     </task>
     <servers />
   </component>
