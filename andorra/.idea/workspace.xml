@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf22ad20-50d7-4771-8ee3-ca090e6b4fdc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/shared/components/RootInput/RootInput.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/components/RootInput/RootInput.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/utils/utils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/Icons/EyeClose.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Icons/EyeClose.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/Icons/EyeOpen.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Icons/EyeOpen.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/components/Input/Input.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/Input/Input.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shared/components/Input/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/Input/Input.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +75,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;full.screen.before.presentation.mode&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#2 on инпут-с-типом-пассворд-иконкой-и-кнопкой&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;инпут-с-типом-пассворд-иконкой-и-кнопкой&quot;,
     &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
     &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
@@ -88,6 +90,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/shared/components/RootInput" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Next.js: debug client-side" type="JavascriptDebugType" uri="http://localhost:3000/">
       <method v="2" />
@@ -122,6 +129,8 @@
       <workItem from="1752586592840" duration="12399000" />
       <workItem from="1752674997508" duration="7816000" />
       <workItem from="1752748370940" duration="13705000" />
+      <workItem from="1758713699470" duration="1593000" />
+      <workItem from="1758717909528" duration="15958000" />
     </task>
     <servers />
   </component>

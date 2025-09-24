@@ -5,7 +5,8 @@ import {EyeOpen} from "@/shared/Icons/EyeOpen";
 import {useState} from "react";
 import {EyeClose} from "@/shared/Icons/EyeClose";
 import {TValue} from "@/shared/components/StateInput/types";
-
+import {RootInput} from "@/shared/components/RootInput/RootInput";
+import {formatNumberValue} from "@/shared/utils/utils";
 
 interface IInputProps {
     type: "text" | "password" | "number";
@@ -16,17 +17,16 @@ interface IInputProps {
     defaultValue?: TValue;
 }
 
-export const Input = ({type, passDifficultylevel, placeholder, value, onChange, defaultValue = '' as TValue}: IInputProps) => {
+export const Input = ({type, passDifficultylevel, value, onChange, defaultValue = '' as TValue}: IInputProps) => {
 
     const [showPassword, setShowPassword] = useState<boolean>(false)
-    const [inputType, setInputType] = useState<'text' | 'password'>()
     const [internalValue, setInternalValue] = useState<TValue>(defaultValue)
-
+    const [inputType, setInputType] = useState<'text' | 'password' | "number">()
     const isControlled = value !== undefined;
     const choiseValue = isControlled ? value : internalValue;
 
     const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
+        setShowPassword(prev => !prev);
         setInputType(showPassword ? "password" : "text");
     };
 
@@ -46,15 +46,50 @@ export const Input = ({type, passDifficultylevel, placeholder, value, onChange, 
         onChange?.(newValue)
     }
 
-    const coreInput = (
-        <input type={inputType} value={choiseValue} onChange={handleChange} placeholder={placeholder} className={styles.input}/>)
-    // root input
+    const handleKeyDownNumber = (event: React.KeyboardEvent<HTMLInputElement>
+    ): void => {
+        const allowedKeys = [
+            "Backspace", "ArrowLeft", "ArrowRight", "Delete", "Tab",
+            "Enter", "Home", "End", "Minus", "NumpadSubtract", "Period", "NumpadDecimal"
+            // разрешенные пользователю клавиши
+        ];
+        if (
+            !((event.key >= "0" && event.key <= "9") || allowedKeys.includes(event.key) || '.' || ',')
+        ) {
+            event.preventDefault();
+        }
+        if (event.key.toLowerCase() === 'e') {
+            event.preventDefault();
+        }
+        if (event.key === "Tab") {
+            const value = event.currentTarget.value;
 
+            if (!value) {
+                return
+            }
+            const formattedValue = formatNumberValue(value);
+
+            if (!isControlled) {
+                setInternalValue(formattedValue as TValue);
+            }
+            onChange?.(value as TValue);
+        }
+    }
 
     const renderInput = () => {
-        if (type === 'text' || type === 'number') {
-            return coreInput
+
+        if (type === 'number') {
+            return <
+                RootInput type={type} choiseValue={choiseValue} onChange={handleChange}
+                          keyDownHandler={handleKeyDownNumber}
+                          handleClear={handleCLear}
+            />;
         }
+
+        if (type === 'text') {
+            return <RootInput type={type} choiseValue={choiseValue} onChange={handleChange}/>;
+        }
+
         if (type === 'password') {
             return (
                 <div className={styles.wrapper}>
@@ -70,7 +105,7 @@ export const Input = ({type, passDifficultylevel, placeholder, value, onChange, 
                                 onClick={togglePasswordVisibility}
                             />
                         )}
-                        {coreInput}
+                        <RootInput type={inputType} choiseValue={choiseValue} onChange={handleChange}/>
                     </div>
                     <div className={styles.button}>
                         <button type="button">cгенерировать пароль</button>
@@ -85,3 +120,13 @@ export const Input = ({type, passDifficultylevel, placeholder, value, onChange, 
     return renderInput();
 }
 
+/*
+    при вооде буквы в числовой инпут я должен прервать вод неверных данных
+    в числовой инпут запретить вводить буквы - +
+    может использоваться точка или запятая, для дробного числа +
+    если пользовать проставит 2.00000 на табляцию убираем все лишнее до 2 +
+    убрать кнопку отчстить инпут и сделать крестик внутри инпута +
+
+    глазик сместить на место суффикса
+
+ */

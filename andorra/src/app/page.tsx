@@ -14,11 +14,15 @@ export default function Home() {
         setState(value)
     }
 
+    console.log(state)
+
     return (
         <div className={styles.page}>
-            <Input type={'text'} placeholder={'текстовый инпут'}/>
-            <Input type={'number'} placeholder={'введите число'}/>
-            <Input type={'password'} value={state} passDifficultylevel={true} onChange={hadleStateInputChange} defaultValue={defaultValue}/>
+            {/*<Input type={'text'} placeholder={'логин'}/>*/}
+            <Input type={'number'} placeholder={'логин'}/>
+
+            {/*<Input type={'password'} placeholder={'пароль'} value={state} passDifficultylevel={true} onChange={hadleStateInputChange}*/}
+            {/*       defaultValue={defaultValue}/>*/}
         </div>
     )
         ;
