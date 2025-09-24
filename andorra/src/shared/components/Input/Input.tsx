@@ -4,40 +4,61 @@ import styles from "./Input.module.scss";
 import {EyeOpen} from "@/shared/Icons/EyeOpen";
 import {useState} from "react";
 import {EyeClose} from "@/shared/Icons/EyeClose";
+import {TValue} from "@/shared/components/StateInput/types";
+
 
 interface IInputProps {
     type: "text" | "password" | "number";
     passDifficultylevel?: boolean;
     placeholder?: string;
+    value?: TValue;
+    onChange?: (value: TValue) => void;
+    defaultValue?: TValue;
 }
 
-export const Input = ({type, passDifficultylevel, placeholder}: IInputProps) => {
+export const Input = ({type, passDifficultylevel, placeholder, value, onChange, defaultValue = '' as TValue}: IInputProps) => {
 
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const [inputType, setInputType] = useState<'text' | 'password'>()
-    const [inputValue, setInputValue] = useState('')
+    const [internalValue, setInternalValue] = useState<TValue>(defaultValue)
+
+    const isControlled = value !== undefined;
+    const choiseValue = isControlled ? value : internalValue;
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
         setInputType(showPassword ? "password" : "text");
     };
 
-    const handleCLear = () => {
-        setInputValue('')
+    const handleCLear = (): void => {
+        const emptyValue = '' as TValue;
+        if (isControlled) {
+            onChange?.(emptyValue);
+        } else
+            setInternalValue(defaultValue)
     }
 
-    const coreInput = () => {
-        return <input type={type} placeholder={placeholder} className={styles.input}/>
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        const newValue = event.target.value
+        if (!isControlled) {
+            setInternalValue(newValue)
+        }
+        onChange?.(newValue)
     }
+
+    const coreInput = (
+        <input type={inputType} value={choiseValue} onChange={handleChange} placeholder={placeholder} className={styles.input}/>)
+    // root input
+
 
     const renderInput = () => {
         if (type === 'text' || type === 'number') {
-            return coreInput()
+            return coreInput
         }
         if (type === 'password') {
             return (
-                <div>
-                    <div className={styles.wrapper}>
+                <div className={styles.wrapper}>
+                    <div className={styles.input_wrapper}>
                         {showPassword ? (
                             <EyeClose
                                 className={styles.icon}
@@ -49,9 +70,7 @@ export const Input = ({type, passDifficultylevel, placeholder}: IInputProps) => 
                                 onClick={togglePasswordVisibility}
                             />
                         )}
-                        <input type={inputType} value={inputValue} onChange={(e) => setInputValue(e.target.value)}
-                               placeholder={'введите пароль'}
-                               className={styles.input}/>
+                        {coreInput}
                     </div>
                     <div className={styles.button}>
                         <button type="button">cгенерировать пароль</button>
@@ -66,12 +85,3 @@ export const Input = ({type, passDifficultylevel, placeholder}: IInputProps) => 
     return renderInput();
 }
 
-
-// базовый инпут который возвращает импут по всем проброшенным в него просами
-/* инпут должен быть один  а врендер фугнкции мы решаем что должго добвиться в него из функционала */
-
-/* ядро должно содеражать в себе стили инпута */
-
-/* должен быть основнрй импут который содержить в себе все возможные стили под варианты ипута, а вы фкнции ренедер мы вызыываем кор
-* инпут в который отдаем пропы для отрисовки нужного нам варианта инпута, и если у него есть пропы например для пассворда то применяться
-* стили пвсворда*/

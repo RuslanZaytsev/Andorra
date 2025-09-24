@@ -1,6 +1,6 @@
 interface IProps {
     className?: string;
-    onClick: () => void;
+    onClick?: () => void;
 }
 
 export const EyeOpen = ({className, onClick}: IProps) => {
