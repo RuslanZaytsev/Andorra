@@ -4,40 +4,96 @@ import styles from "./Input.module.scss";
 import {EyeOpen} from "@/shared/Icons/EyeOpen";
 import {useState} from "react";
 import {EyeClose} from "@/shared/Icons/EyeClose";
+import {TValue} from "@/shared/components/StateInput/types";
+import {RootInput} from "@/shared/components/RootInput/RootInput";
+import {formatNumberValue} from "@/shared/utils/utils";
 
 interface IInputProps {
     type: "text" | "password" | "number";
     passDifficultylevel?: boolean;
     placeholder?: string;
+    value?: TValue;
+    onChange?: (value: TValue) => void;
+    defaultValue?: TValue;
 }
 
-export const Input = ({type, passDifficultylevel, placeholder}: IInputProps) => {
+export const Input = ({type, passDifficultylevel, value, onChange, defaultValue = '' as TValue}: IInputProps) => {
 
     const [showPassword, setShowPassword] = useState<boolean>(false)
-    const [inputType, setInputType] = useState<'text' | 'password'>()
-    const [inputValue, setInputValue] = useState('')
+    const [internalValue, setInternalValue] = useState<TValue>(defaultValue)
+    const [inputType, setInputType] = useState<'text' | 'password' | "number">()
+    const isControlled = value !== undefined;
+    const choiseValue = isControlled ? value : internalValue;
 
     const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
+        setShowPassword(prev => !prev);
         setInputType(showPassword ? "password" : "text");
     };
 
-    const handleCLear = () => {
-        setInputValue('')
+    const handleCLear = (): void => {
+        const emptyValue = '' as TValue;
+        if (isControlled) {
+            onChange?.(emptyValue);
+        } else
+            setInternalValue(defaultValue)
     }
 
-    const coreInput = () => {
-        return <input type={type} placeholder={placeholder} className={styles.input}/>
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        const newValue = event.target.value
+        if (!isControlled) {
+            setInternalValue(newValue)
+        }
+        onChange?.(newValue)
+    }
+
+    const handleKeyDownNumber = (event: React.KeyboardEvent<HTMLInputElement>
+    ): void => {
+        const allowedKeys = [
+            "Backspace", "ArrowLeft", "ArrowRight", "Delete", "Tab",
+            "Enter", "Home", "End", "Minus", "NumpadSubtract", "Period", "NumpadDecimal"
+            // разрешенные пользователю клавиши
+        ];
+        if (
+            !((event.key >= "0" && event.key <= "9") || allowedKeys.includes(event.key) || '.' || ',')
+        ) {
+            event.preventDefault();
+        }
+        if (event.key.toLowerCase() === 'e') {
+            event.preventDefault();
+        }
+        if (event.key === "Tab") {
+            const value = event.currentTarget.value;
+
+            if (!value) {
+                return
+            }
+            const formattedValue = formatNumberValue(value);
+
+            if (!isControlled) {
+                setInternalValue(formattedValue as TValue);
+            }
+            onChange?.(value as TValue);
+        }
     }
 
     const renderInput = () => {
-        if (type === 'text' || type === 'number') {
-            return coreInput()
+
+        if (type === 'number') {
+            return <
+                RootInput type={type} choiseValue={choiseValue} onChange={handleChange}
+                          keyDownHandler={handleKeyDownNumber}
+                          handleClear={handleCLear}
+            />;
         }
+
+        if (type === 'text') {
+            return <RootInput type={type} choiseValue={choiseValue} onChange={handleChange}/>;
+        }
+
         if (type === 'password') {
             return (
-                <div>
-                    <div className={styles.wrapper}>
+                <div className={styles.wrapper}>
+                    <div className={styles.input_wrapper}>
                         {showPassword ? (
                             <EyeClose
                                 className={styles.icon}
@@ -49,9 +105,7 @@ export const Input = ({type, passDifficultylevel, placeholder}: IInputProps) => 
                                 onClick={togglePasswordVisibility}
                             />
                         )}
-                        <input type={inputType} value={inputValue} onChange={(e) => setInputValue(e.target.value)}
-                               placeholder={'введите пароль'}
-                               className={styles.input}/>
+                        <RootInput type={inputType} choiseValue={choiseValue} onChange={handleChange}/>
                     </div>
                     <div className={styles.button}>
                         <button type="button">cгенерировать пароль</button>
@@ -66,12 +120,13 @@ export const Input = ({type, passDifficultylevel, placeholder}: IInputProps) => 
     return renderInput();
 }
 
+/*
+    при вооде буквы в числовой инпут я должен прервать вод неверных данных
+    в числовой инпут запретить вводить буквы - +
+    может использоваться точка или запятая, для дробного числа +
+    если пользовать проставит 2.00000 на табляцию убираем все лишнее до 2 +
+    убрать кнопку отчстить инпут и сделать крестик внутри инпута +
 
-// базовый инпут который возвращает импут по всем проброшенным в него просами
-/* инпут должен быть один  а врендер фугнкции мы решаем что должго добвиться в него из функционала */
+    глазик сместить на место суффикса
 
-/* ядро должно содеражать в себе стили инпута */
-
-/* должен быть основнрй импут который содержить в себе все возможные стили под варианты ипута, а вы фкнции ренедер мы вызыываем кор
-* инпут в который отдаем пропы для отрисовки нужного нам варианта инпута, и если у него есть пропы например для пассворда то применяться
-* стили пвсворда*/
+ */
