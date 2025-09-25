@@ -51,7 +51,6 @@ export const Input = ({type, passDifficultylevel, value, onChange, defaultValue 
         const allowedKeys = [
             "Backspace", "ArrowLeft", "ArrowRight", "Delete", "Tab",
             "Enter", "Home", "End", "Minus", "NumpadSubtract", "Period", "NumpadDecimal"
-            // разрешенные пользователю клавиши
         ];
         if (
             !((event.key >= "0" && event.key <= "9") || allowedKeys.includes(event.key) || '.' || ',')
@@ -120,8 +119,3 @@ export const Input = ({type, passDifficultylevel, value, onChange, defaultValue 
     return renderInput();
 }
 
-/*
-    глазик сместить на место суффикса
-    заменить запятую при табировании дробного числа
-    убрать иконку очищения если данные не заполнены
- */
