@@ -18,10 +18,10 @@ interface IInputProps {
     clear?: () => void;
 }
 
-export const Input = ({type, passDifficultylevel, value, onChange, clear, defaultValue = '' as TValue}: IInputProps) => {
+export const Input = ({type, passDifficultylevel, value, onChange, clear, defaultValue, placeholder}: IInputProps) => {
 
     const [showPassword, setShowPassword] = useState<boolean>(false)
-    const [internalValue, setInternalValue] = useState<TValue>(defaultValue)
+    const [internalValue, setInternalValue] = useState<TValue | undefined>(defaultValue)
     const [inputType, setInputType] = useState<'text' | 'password' | "number">()
     const isControlled = value !== undefined;
     const choiseValue = isControlled ? value : internalValue;
@@ -92,7 +92,8 @@ export const Input = ({type, passDifficultylevel, value, onChange, clear, defaul
         }
 
         if (type === 'text') {
-            return <RootInput type={type} choiseValue={choiseValue} onChange={handleChange} handleClear={handleCLear}/>;
+            return <RootInput type={type} choiseValue={choiseValue} onChange={handleChange} handleClear={handleCLear}
+                              placeholder={placeholder}/>;
         }
 
         if (type === 'password') {

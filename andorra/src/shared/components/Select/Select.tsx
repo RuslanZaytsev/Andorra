@@ -14,6 +14,8 @@ const Select = () => {
         {value: "mercedes-g-class", label: "Mercedes G-Class"},
     ];
     const [state, setState] = useState<string>(mercedesOptions[0].value);
+    // const [isOpen, setIsOpen] = useState<boolean>(false);
+
 
     const handleChange = (event: any
     ) => {
@@ -21,7 +23,7 @@ const Select = () => {
     };
 
     const handleClear = () => {
-        setState('root value after clear')
+        setState('')
     };
 
     return (
@@ -31,6 +33,7 @@ const Select = () => {
                 value={state}
                 type={'text'}
                 clear={handleClear}
+                placeholder={'выберите значение'}
             />
         </div>
     );
@@ -39,4 +42,5 @@ const Select = () => {
 export default Select;
 
 
+/* при отчистке инпута и попытке ввода нового значения компонент падает с ошибкой, что то с валуе */
 
