@@ -1,4 +1,4 @@
-@import "../../src/shared/styles/mixins.scss";
+@use "../../src/shared/styles/mixins.scss" as *;
 
 .page {
     display: flex;
