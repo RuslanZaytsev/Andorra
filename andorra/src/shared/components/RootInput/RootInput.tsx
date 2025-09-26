@@ -10,18 +10,20 @@ interface IInputProps {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     defaultValue?: TValue;
     keyDownHandler?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-    choiseValue: TValue;
+    choiseValue: TValue | [];
     handleClear?: () => void;
     onFocus?: () => void;
     onBlur?: () => void;
+    ref: React.Ref<HTMLInputElement>
 }
 
-export const RootInput = ({keyDownHandler, type, choiseValue, onChange, placeholder, handleClear, onFocus, onBlur, value}: IInputProps) => {
+export const RootInput = ({keyDownHandler, type, choiseValue, onChange, placeholder, handleClear, onFocus, onBlur, ref}: IInputProps) => {
     const renderDelete = choiseValue;
 
     return (
         <div className={styles.input_container}>
             <input
+                ref={ref}
                 onKeyDown={keyDownHandler}
                 type={type}
                 value={choiseValue}

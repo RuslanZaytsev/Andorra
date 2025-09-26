@@ -21,12 +21,16 @@
 
 .icon {
     position: absolute;
-    right: 12px;
     top: 50%;
-    transform: translateY(-50%);
-    width: 17px;
-    height: 17px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 
 

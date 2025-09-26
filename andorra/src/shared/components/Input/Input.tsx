@@ -18,10 +18,21 @@ interface IInputProps {
     clear?: () => void;
     onFocus?: () => void;
     onBlur?: () => void;
-
+    ref: React.Ref<HTMLInputElement>
 }
 
-export const Input = ({type, passDifficultylevel, value, onChange, clear, defaultValue, placeholder, onFocus, onBlur}: IInputProps) => {
+export const Input = ({
+                          type,
+                          passDifficultylevel,
+                          value,
+                          onChange,
+                          clear,
+                          defaultValue,
+                          placeholder,
+                          onFocus,
+                          onBlur,
+                          ref
+                      }: IInputProps) => {
 
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const [internalValue, setInternalValue] = useState<TValue | undefined>(defaultValue)
@@ -91,12 +102,13 @@ export const Input = ({type, passDifficultylevel, value, onChange, clear, defaul
                 RootInput type={type} choiseValue={choiseValue} onChange={handleChange}
                           keyDownHandler={handleKeyDownNumber}
                           handleClear={handleCLear}
+                          ref={ref}
             />;
         }
 
         if (type === 'text') {
             return <RootInput type={type} choiseValue={choiseValue} onChange={handleChange} handleClear={handleCLear}
-                              placeholder={placeholder} onFocus={onFocus} onBlur={onBlur}/>;
+                              placeholder={placeholder} onFocus={onFocus} onBlur={onBlur} ref={ref}/>;
         }
 
         if (type === 'password'
@@ -115,7 +127,7 @@ export const Input = ({type, passDifficultylevel, value, onChange, clear, defaul
                                 onClick={togglePasswordVisibility}
                             />
                         )}
-                        <RootInput type={inputType} choiseValue={choiseValue} onChange={handleChange}/>
+                        <RootInput type={inputType} choiseValue={choiseValue} onChange={handleChange} ref={ref}/>
                     </div>
                     <div className={styles.button}>
                         <button type="button">cгенерировать пароль</button>

@@ -1,15 +1,29 @@
-
 .root {
+    position: relative;
     width: 100%;
-    background-color: gold;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .dropDownWrapper {
-    width: 100%;
-
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    border: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    color: #5B6C87;
+    padding: 12px;
+    border-radius: 10px;
 }
 
 .dropDownUl {
-    position: absolute;
-    background-color: lemonchiffon;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
 }
