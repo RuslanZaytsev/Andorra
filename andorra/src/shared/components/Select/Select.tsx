@@ -22,7 +22,7 @@ const Select = () => {
     };
 
     const handleClear = () => {
-        setState(initial)
+        setSelectedOption([])
     };
 
     const handleSelectOption = (option: TOption) => {
