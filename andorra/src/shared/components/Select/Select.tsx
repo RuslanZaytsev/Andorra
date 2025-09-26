@@ -1,46 +1,56 @@
 import React, {useState} from 'react';
 import {Input} from "@/shared/components/Input/Input";
+import {TValue} from "@/shared/components/StateInput/types";
+import {mercedesOptions} from "@/shared/components/Select/options";
+import styles from './Select.module.scss'
+
+type TOption = {
+    value: string;
+    label: string
+}
 
 const Select = () => {
+    const initial = ''
+    const [state, setState] = useState<TValue>(initial);
+    const [isOpen, setIsOpen] = useState<boolean>(true);
 
-    const mercedesOptions = [
-        {value: "mercedes-a-class", label: "Mercedes A-Class"},
-        {value: "mercedes-c-class", label: "Mercedes C-Class"},
-        {value: "mercedes-e-class", label: "Mercedes E-Class"},
-        {value: "mercedes-s-class", label: "Mercedes S-Class"},
-        {value: "mercedes-glc", label: "Mercedes GLC"},
-        {value: "mercedes-gle", label: "Mercedes GLE"},
-        {value: "mercedes-gls", label: "Mercedes GLS"},
-        {value: "mercedes-g-class", label: "Mercedes G-Class"},
-    ];
-    const [state, setState] = useState<string>(mercedesOptions[0].value);
-    // const [isOpen, setIsOpen] = useState<boolean>(false);
-
-
-    const handleChange = (event: any
+    const handleChange = (value: TValue
     ) => {
-        setState(event.target.value)
+        setState(value)
     };
 
     const handleClear = () => {
-        setState('')
+        setState(initial)
     };
 
+    //убрать иконку если данные пустые
+
     return (
-        <div>
+        <div className={styles.root}>
             <Input
                 onChange={handleChange}
                 value={state}
                 type={'text'}
                 clear={handleClear}
                 placeholder={'выберите значение'}
+                onFocus={() => setIsOpen(true)}
+                // onBlur={() => setIsOpen(false)}
             />
+            {isOpen && (
+                <div className={styles.dropDownWrapper}>
+                    <ul className={styles.dropDownUl}>
+                        {mercedesOptions.map((option: TOption) => (
+                            <li key={option.value}>{option.label}</li>
+                        ))}
+                    </ul>
+                </div>
+            )
+            }
         </div>
-    );
+    )
+        ;
 }
 
+
 export default Select;
-
-
-/* при отчистке инпута и попытке ввода нового значения компонент падает с ошибкой, что то с валуе */
 

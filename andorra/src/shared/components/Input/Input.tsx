@@ -16,9 +16,12 @@ interface IInputProps {
     onChange?: (value: TValue) => void;
     defaultValue?: TValue;
     clear?: () => void;
+    onFocus?: () => void;
+    onBlur?: () => void;
+
 }
 
-export const Input = ({type, passDifficultylevel, value, onChange, clear, defaultValue, placeholder}: IInputProps) => {
+export const Input = ({type, passDifficultylevel, value, onChange, clear, defaultValue, placeholder, onFocus, onBlur}: IInputProps) => {
 
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const [internalValue, setInternalValue] = useState<TValue | undefined>(defaultValue)
@@ -93,10 +96,11 @@ export const Input = ({type, passDifficultylevel, value, onChange, clear, defaul
 
         if (type === 'text') {
             return <RootInput type={type} choiseValue={choiseValue} onChange={handleChange} handleClear={handleCLear}
-                              placeholder={placeholder}/>;
+                              placeholder={placeholder} onFocus={onFocus} onBlur={onBlur}/>;
         }
 
-        if (type === 'password') {
+        if (type === 'password'
+        ) {
             return (
                 <div className={styles.wrapper}>
                     <div className={styles.input_wrapper}>
