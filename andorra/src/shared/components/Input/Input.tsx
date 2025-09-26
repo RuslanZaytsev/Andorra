@@ -15,12 +15,27 @@ interface IInputProps {
     value?: TValue;
     onChange?: (value: TValue) => void;
     defaultValue?: TValue;
+    clear?: () => void;
+    onFocus?: () => void;
+    onBlur?: () => void;
+    ref: React.Ref<HTMLInputElement>
 }
 
-export const Input = ({type, passDifficultylevel, value, onChange, defaultValue = '' as TValue}: IInputProps) => {
+export const Input = ({
+                          type,
+                          passDifficultylevel,
+                          value,
+                          onChange,
+                          clear,
+                          defaultValue,
+                          placeholder,
+                          onFocus,
+                          onBlur,
+                          ref
+                      }: IInputProps) => {
 
     const [showPassword, setShowPassword] = useState<boolean>(false)
-    const [internalValue, setInternalValue] = useState<TValue>(defaultValue)
+    const [internalValue, setInternalValue] = useState<TValue | undefined>(defaultValue)
     const [inputType, setInputType] = useState<'text' | 'password' | "number">()
     const isControlled = value !== undefined;
     const choiseValue = isControlled ? value : internalValue;
@@ -31,6 +46,11 @@ export const Input = ({type, passDifficultylevel, value, onChange, defaultValue 
     };
 
     const handleCLear = (): void => {
+        if (clear) {
+            clear();
+            return
+        }
+
         const emptyValue = '' as TValue;
         if (isControlled) {
             onChange?.(emptyValue);
@@ -82,14 +102,17 @@ export const Input = ({type, passDifficultylevel, value, onChange, defaultValue 
                 RootInput type={type} choiseValue={choiseValue} onChange={handleChange}
                           keyDownHandler={handleKeyDownNumber}
                           handleClear={handleCLear}
+                          ref={ref}
             />;
         }
 
         if (type === 'text') {
-            return <RootInput type={type} choiseValue={choiseValue} onChange={handleChange}/>;
+            return <RootInput type={type} choiseValue={choiseValue} onChange={handleChange} handleClear={handleCLear}
+                              placeholder={placeholder} onFocus={onFocus} onBlur={onBlur} ref={ref}/>;
         }
 
-        if (type === 'password') {
+        if (type === 'password'
+        ) {
             return (
                 <div className={styles.wrapper}>
                     <div className={styles.input_wrapper}>
@@ -104,7 +127,7 @@ export const Input = ({type, passDifficultylevel, value, onChange, defaultValue 
                                 onClick={togglePasswordVisibility}
                             />
                         )}
-                        <RootInput type={inputType} choiseValue={choiseValue} onChange={handleChange}/>
+                        <RootInput type={inputType} choiseValue={choiseValue} onChange={handleChange} ref={ref}/>
                     </div>
                     <div className={styles.button}>
                         <button type="button">cгенерировать пароль</button>

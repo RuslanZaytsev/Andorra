@@ -1,4 +1,3 @@
-
 import {TValue} from "@/shared/components/StateInput/types";
 import styles from './RootInput.module.scss'
 import {DeleteSvg} from "@/shared/Icons/delete";
@@ -11,24 +10,35 @@ interface IInputProps {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     defaultValue?: TValue;
     keyDownHandler?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-    choiseValue: TValue;
+    choiseValue: TValue | [];
     handleClear?: () => void;
+    onFocus?: () => void;
+    onBlur?: () => void;
+    ref: React.Ref<HTMLInputElement>
 }
 
-export const RootInput = ({keyDownHandler, type, choiseValue, onChange, placeholder, handleClear}: IInputProps) => {
+export const RootInput = ({keyDownHandler, type, choiseValue, onChange, placeholder, handleClear, onFocus, onBlur, ref}: IInputProps) => {
+    const renderDelete = choiseValue;
+
     return (
         <div className={styles.input_container}>
             <input
+                ref={ref}
                 onKeyDown={keyDownHandler}
                 type={type}
                 value={choiseValue}
                 onChange={onChange}
                 placeholder={placeholder}
                 className={styles.input}
+                onFocus={onFocus}
+                onBlur={onBlur}
             />
-            <span className={styles.icon}>
+            {renderDelete && (
+                <span className={styles.icon}>
                 <DeleteSvg handleClear={handleClear}/>
             </span>
+            )}
+
         </div>
 
     )
