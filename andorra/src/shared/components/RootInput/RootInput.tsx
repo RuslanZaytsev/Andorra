@@ -1,8 +1,9 @@
 import {TValue} from "@/shared/components/StateInput/types";
 import styles from './RootInput.module.scss'
-import {DeleteSvg} from "@/shared/Icons/delete";
+import Xcircle from "@/shared/Icons/XCircle";
+import ArrowDown from "@/shared/Icons/ArrowDown";
 
-interface IInputProps {
+interface IRootInputProps {
     type?: "text" | "password" | "number";
     passDifficultylevel?: boolean;
     placeholder?: string;
@@ -15,10 +16,21 @@ interface IInputProps {
     onFocus?: () => void;
     onBlur?: () => void;
     ref: React.Ref<HTMLInputElement>
+    handleOpenDropdown?: () => void;
 }
 
-export const RootInput = ({keyDownHandler, type, choiseValue, onChange, placeholder, handleClear, onFocus, onBlur, ref}: IInputProps) => {
-    const renderDelete = choiseValue;
+export const RootInput = ({
+                              keyDownHandler,
+                              type,
+                              choiseValue,
+                              onChange,
+                              placeholder,
+                              handleClear,
+                              onFocus,
+                              onBlur,
+                              ref,
+                              handleOpenDropdown,
+                          }: IRootInputProps) => {
 
     return (
         <div className={styles.input_container}>
@@ -33,10 +45,15 @@ export const RootInput = ({keyDownHandler, type, choiseValue, onChange, placehol
                 onFocus={onFocus}
                 onBlur={onBlur}
             />
-            {renderDelete && (
+            {!choiseValue && (
                 <span className={styles.icon}>
-                <DeleteSvg handleClear={handleClear}/>
-            </span>
+                <ArrowDown openDropDown={handleOpenDropdown}/>
+                </span>)}
+
+            {choiseValue && (
+                <span className={styles.icon}>
+            <Xcircle handleClear={handleClear}/>
+        </span>
             )}
 
         </div>

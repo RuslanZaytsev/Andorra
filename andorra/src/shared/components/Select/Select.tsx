@@ -44,12 +44,18 @@ const Select = () => {
 
     const selectedOptionLabelString = selectedOption.map(option => option.label).join(', ')
 
+    const handleOpenDropdown = () => {
+        setIsOpen(true)
+    };
+
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, []);
+
+    // сделать компонент чипс для выбранного элепента и опции отдавать как чипсы
 
     return (
         <div className={styles.root}>
@@ -60,7 +66,8 @@ const Select = () => {
                 type={'text'}
                 clear={handleClear}
                 placeholder={'выберите значение'}
-                onFocus={() => setIsOpen(true)}
+                onFocus={handleOpenDropdown}
+                openDropdown={handleOpenDropdown}
             />
             {isOpen && (
                 <div className={styles.dropDownWrapper} ref={dropDownRef}>

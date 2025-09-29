@@ -13,25 +13,26 @@ interface IInputProps {
     passDifficultylevel?: boolean;
     placeholder?: string;
     value?: TValue;
-    onChange?: (value: TValue) => void;
     defaultValue?: TValue;
     clear?: () => void;
     onFocus?: () => void;
     onBlur?: () => void;
     ref: React.Ref<HTMLInputElement>
+    onChange?: (value: TValue) => void;
+    openDropdown?: () => void;
 }
 
 export const Input = ({
                           type,
                           passDifficultylevel,
                           value,
-                          onChange,
                           clear,
                           defaultValue,
                           placeholder,
                           onFocus,
                           onBlur,
-                          ref
+                          onChange,
+                          ref, openDropdown
                       }: IInputProps) => {
 
     const [showPassword, setShowPassword] = useState<boolean>(false)
@@ -106,11 +107,6 @@ export const Input = ({
             />;
         }
 
-        if (type === 'text') {
-            return <RootInput type={type} choiseValue={choiseValue} onChange={handleChange} handleClear={handleCLear}
-                              placeholder={placeholder} onFocus={onFocus} onBlur={onBlur} ref={ref}/>;
-        }
-
         if (type === 'password'
         ) {
             return (
@@ -137,6 +133,14 @@ export const Input = ({
                 </div>
             )
         }
+
+        if (type === 'text') {
+            return <RootInput type={type} choiseValue={choiseValue} onChange={handleChange} handleClear={handleCLear}
+                              placeholder={placeholder} onFocus={onFocus} onBlur={onBlur} ref={ref}
+                              handleOpenDropdown={openDropdown}/>;
+        }
+
+
     }
 
     return renderInput();
