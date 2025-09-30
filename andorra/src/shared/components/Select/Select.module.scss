@@ -27,3 +27,16 @@
     padding: 0;
     cursor: pointer;
 }
+
+.selectWrapper {
+    display: flex;
+    flex-direction: row;
+    //flex-wrap: wrap;
+    gap: 12px;
+}
+
+.chipWrapper {
+    background-color: lightgreen;
+    color: #5B6C87;
+}
+

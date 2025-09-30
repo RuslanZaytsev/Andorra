@@ -2,9 +2,10 @@
 
 .page {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     width: 1000px;
-    height: 700px;
+    height: 500px;
     padding: 70px;
     border: 2px solid #333;
     border-radius: 8px;

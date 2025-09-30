@@ -20,6 +20,7 @@ interface IInputProps {
     ref: React.Ref<HTMLInputElement>
     onChange?: (value: TValue) => void;
     openDropdown?: () => void;
+    classname?: string;
 }
 
 export const Input = ({
@@ -32,7 +33,8 @@ export const Input = ({
                           onFocus,
                           onBlur,
                           onChange,
-                          ref, openDropdown
+                          ref, openDropdown,
+                          classname,
                       }: IInputProps) => {
 
     const [showPassword, setShowPassword] = useState<boolean>(false)
@@ -135,7 +137,7 @@ export const Input = ({
         }
 
         if (type === 'text') {
-            return <RootInput type={type} choiseValue={choiseValue} onChange={handleChange} handleClear={handleCLear}
+            return <RootInput classname={classname} type={type} choiseValue={choiseValue} onChange={handleChange} handleClear={handleCLear}
                               placeholder={placeholder} onFocus={onFocus} onBlur={onBlur} ref={ref}
                               handleOpenDropdown={openDropdown}/>;
         }
