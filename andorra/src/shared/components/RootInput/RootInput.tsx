@@ -1,7 +1,6 @@
 import {TValue} from "@/shared/components/StateInput/types";
+import classNames from "classnames";
 import styles from './RootInput.module.scss'
-import Xcircle from "@/shared/Icons/XCircle";
-import ArrowDown from "@/shared/Icons/ArrowDown";
 
 interface IRootInputProps {
     type?: "text" | "password" | "number";
@@ -17,6 +16,8 @@ interface IRootInputProps {
     onBlur?: () => void;
     ref: React.Ref<HTMLInputElement>
     handleOpenDropdown?: () => void;
+    classname?: string;
+    onKeyDownCapture?: any;
 }
 
 export const RootInput = ({
@@ -30,7 +31,11 @@ export const RootInput = ({
                               onBlur,
                               ref,
                               handleOpenDropdown,
+                              classname,
+                              onKeyDownCapture,
                           }: IRootInputProps) => {
+
+    const style = classNames(styles.input, classname)
 
     return (
         <div className={styles.input_container}>
@@ -41,20 +46,21 @@ export const RootInput = ({
                 value={choiseValue}
                 onChange={onChange}
                 placeholder={placeholder}
-                className={styles.input}
+                className={style}
                 onFocus={onFocus}
                 onBlur={onBlur}
+                onKeyDownCapture={onKeyDownCapture}
             />
-            {!choiseValue && (
-                <span className={styles.icon}>
-                <ArrowDown openDropDown={handleOpenDropdown}/>
-                </span>)}
+            {/*    {!choiseValue && (*/}
+            {/*        <span className={styles.icon}>*/}
+            {/*        <ArrowDown openDropDown={handleOpenDropdown}/>*/}
+            {/*        </span>)}*/}
 
-            {choiseValue && (
-                <span className={styles.icon}>
-            <Xcircle handleClear={handleClear}/>
-        </span>
-            )}
+            {/*    {choiseValue && (*/}
+            {/*        <span className={styles.icon}>*/}
+            {/*    <Xcircle handleClear={handleClear}/>*/}
+            {/*</span>*/}
+            {/*    )}*/}
 
         </div>
 

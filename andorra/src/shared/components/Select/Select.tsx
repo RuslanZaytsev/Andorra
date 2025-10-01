@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Input} from "@/shared/components/Input/Input";
 import {TValue} from "@/shared/components/StateInput/types";
-import {mercedesOptions} from "@/shared/components/Select/options";
+import {carOptions} from "@/shared/components/Select/options";
 import styles from './Select.module.scss'
 import {TOption} from "@/shared/components/Select/types";
 import Chip from "@/shared/components/Chip/Chip";
@@ -12,15 +12,27 @@ const Select = () => {
     const [state, setState] = useState<TValue>(initial);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [selectedOption, setSelectedOption] = useState<TOption[]>([]);
+    const [dropDownSearch, setDropDownSearch] = useState<string>('')
 
     const selectRef = useRef<HTMLInputElement>(null);
     const dropDownRef = useRef<HTMLDivElement>(null);
 
+    const filteredoptions = carOptions.filter((option) => option.label.includes(dropDownSearch))
 
     const handleChange = (value: TValue
     ) => {
         setState(value)
-        setSelectedOption(value)
+    };
+
+    const handleAddCustomOption = () => {
+        if (state !== undefined && state !== null && state.toString().trim() !== '') {
+            const trimmedValue = state.toString().trim();
+            // Если это число, сохранить в value как число, иначе как строку
+            const value = typeof state === 'number' ? state : trimmedValue;
+            const newOption = {value, label: trimmedValue};
+            setSelectedOption(prev => [...prev, newOption]);
+            setState('');
+        }
     };
 
     const handleClear = () => {
@@ -28,13 +40,13 @@ const Select = () => {
     };
 
     const handleSelectOption = (option: TOption) => {
-        setSelectedOption((prev: any) => {
+        setSelectedOption((prev: TOption[]) => {
             const isSelected = prev.some((o: TOption) => o.value === option.value)
             if (isSelected) {
-                return prev.filter((o: TOption) => o.value !== option.value)
+                return [...prev]
             } else {
-                return [...prev, option];
             }
+            return [...prev, option];
         })
     };
 
@@ -44,10 +56,16 @@ const Select = () => {
         }
     };
 
-    // const selectedOptionLabelString = selectedOption.map(option => option.label).join(', ')
-
     const handleOpenDropdown = () => {
         setIsOpen(true)
+    };
+
+    const handleDeleteOption = (option: TOption) => {
+        setSelectedOption(prev => prev.filter(o => o.value !== option.value));
+    };
+
+    const handleSearchOption = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setDropDownSearch(e.target.value)
     };
 
     useEffect(() => {
@@ -57,51 +75,55 @@ const Select = () => {
         };
     }, []);
 
-    // сделать компонент чипс для выбранного элепента и опции отдавать как чипсы
-    // посмотретт что такое джейсон вебтокен, и разобратся что такое токен вебтокен и тд
-
-    //мультиселект с чипами это единый блок с чипами и инрпутом в котьром рисуемся оба компонента сразу
-    // компонент инпут как бы оборачивает чипы и создается видимссть что они внутри него
-    // объединить и получить чипсы внутри инпута, добавить в чипс удаление чипса
-
     return (
         <div className={styles.root}>
-            <div className={styles.selectWrapper}>
+            <div className={styles.selectWrapper} onClick={() => selectRef.current?.focus()}>
                 <div className={styles.chipWrapper}>
                     {selectedOption && selectedOption.map(option => (
                         <Chip
                             key={option.value}
                             label={option.label}
-                            onClick={() => handleSelectOption(option)}
+                            onDelete={() => {
+                                handleDeleteOption(option)
+                            }}
                         />
                     ))}
                 </div>
                 <Input
                     ref={selectRef}
                     onChange={handleChange}
-                    value={''}
+                    value={state}
                     type={'text'}
                     clear={handleClear}
-                    placeholder={'выберите значение'}
                     onFocus={handleOpenDropdown}
                     openDropdown={handleOpenDropdown}
-                    classname={styles.coreInputGrow}
+                    classname={styles.input}
+                    onKeyDown={(e: { key: string; preventDefault: () => void; }) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            handleAddCustomOption();
+                        }
+                    }}
                 />
             </div>
 
-            {isOpen && (
-                <div className={styles.dropDownWrapper} ref={dropDownRef}>
-                    <ul className={styles.dropDownUl}>
-                        {mercedesOptions.map((option: TOption) => (
-                            <Chip onClick={() => handleSelectOption(option)} key={option.value} label={option.label}/>
-                        ))}
-                    </ul>
-                </div>
-            )
+            {
+                isOpen && (
+                    <div className={styles.dropDownWrapper} ref={dropDownRef}>
+                        <input placeholder={'поиск по опциям'} className={styles.dropDownSearch} type={'text'} value={dropDownSearch}
+                               onChange={handleSearchOption}/>
+                        <ul className={styles.dropDownUl}>
+                            {filteredoptions.map((option: TOption) => (
+                                <li onClick={() => {
+                                    handleSelectOption(option);
+                                    setDropDownSearch('')
+                                }} key={option.value}>{option.label}</li>))}
+                        </ul>
+                    </div>
+                )
             }
         </div>
-    )
-        ;
+    );
 }
 
 export default Select;

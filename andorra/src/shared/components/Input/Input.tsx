@@ -1,12 +1,12 @@
 'use client'
-
 import styles from "./Input.module.scss";
 import {EyeOpen} from "@/shared/Icons/EyeOpen";
-import {useState} from "react";
 import {EyeClose} from "@/shared/Icons/EyeClose";
 import {TValue} from "@/shared/components/StateInput/types";
 import {RootInput} from "@/shared/components/RootInput/RootInput";
 import {formatNumberValue} from "@/shared/utils/utils";
+import React, {useState} from "react";
+
 
 interface IInputProps {
     type: "text" | "password" | "number";
@@ -21,6 +21,7 @@ interface IInputProps {
     onChange?: (value: TValue) => void;
     openDropdown?: () => void;
     classname?: string;
+    onKeyDown?: any;
 }
 
 export const Input = ({
@@ -35,6 +36,7 @@ export const Input = ({
                           onChange,
                           ref, openDropdown,
                           classname,
+                          onKeyDown,
                       }: IInputProps) => {
 
     const [showPassword, setShowPassword] = useState<boolean>(false)
@@ -137,12 +139,12 @@ export const Input = ({
         }
 
         if (type === 'text') {
-            return <RootInput classname={classname} type={type} choiseValue={choiseValue} onChange={handleChange} handleClear={handleCLear}
+            return <RootInput onKeyDownCapture={onKeyDown} classname={classname} type={type} choiseValue={choiseValue}
+                              onChange={handleChange}
+                              handleClear={handleCLear}
                               placeholder={placeholder} onFocus={onFocus} onBlur={onBlur} ref={ref}
                               handleOpenDropdown={openDropdown}/>;
         }
-
-
     }
 
     return renderInput();

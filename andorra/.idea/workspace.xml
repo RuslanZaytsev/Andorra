@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf22ad20-50d7-4771-8ee3-ca090e6b4fdc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shared/components/Select/Select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/components/Select/Select.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,6 +68,7 @@
     "JavaScript Debug.Next.js: debug client-side.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
     "full.screen.before.presentation.mode": "true",
     "git-widget-placeholder": "#4 on задача-2-создание-селекта-с-множе…опций",
@@ -127,6 +128,7 @@
       <workItem from="1758713699470" duration="1593000" />
       <workItem from="1758717909528" duration="15958000" />
       <workItem from="1759251850760" duration="15000" />
+      <workItem from="1759323719971" duration="18000" />
     </task>
     <servers />
   </component>
