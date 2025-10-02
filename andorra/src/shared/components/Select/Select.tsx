@@ -27,7 +27,6 @@ const Select = () => {
     const handleAddCustomOption = () => {
         if (state !== undefined && state !== null && state.toString().trim() !== '') {
             const trimmedValue = state.toString().trim();
-            // Если это число, сохранить в value как число, иначе как строку
             const value = typeof state === 'number' ? state : trimmedValue;
             const newOption = {value, label: trimmedValue};
             setSelectedOption(prev => [...prev, newOption]);
@@ -98,7 +97,7 @@ const Select = () => {
                     onFocus={handleOpenDropdown}
                     openDropdown={handleOpenDropdown}
                     classname={styles.input}
-                    onKeyDown={(e: { key: string; preventDefault: () => void; }) => {
+                    onKeyDown={(e) => {
                         if (e.key === 'Enter') {
                             e.preventDefault();
                             handleAddCustomOption();

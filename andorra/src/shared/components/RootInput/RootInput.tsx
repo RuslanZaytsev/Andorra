@@ -26,11 +26,9 @@ export const RootInput = ({
                               choiseValue,
                               onChange,
                               placeholder,
-                              handleClear,
                               onFocus,
                               onBlur,
                               ref,
-                              handleOpenDropdown,
                               classname,
                               onKeyDownCapture,
                           }: IRootInputProps) => {
@@ -51,17 +49,6 @@ export const RootInput = ({
                 onBlur={onBlur}
                 onKeyDownCapture={onKeyDownCapture}
             />
-            {/*    {!choiseValue && (*/}
-            {/*        <span className={styles.icon}>*/}
-            {/*        <ArrowDown openDropDown={handleOpenDropdown}/>*/}
-            {/*        </span>)}*/}
-
-            {/*    {choiseValue && (*/}
-            {/*        <span className={styles.icon}>*/}
-            {/*    <Xcircle handleClear={handleClear}/>*/}
-            {/*</span>*/}
-            {/*    )}*/}
-
         </div>
 
     )
