@@ -9,7 +9,7 @@ interface IDropDown {
     ) => void;
     filteredoptions: { value: string, label: string }[];
     handleSelectOption: (option: TOption) => void;
-    setDropDownSearch: (value: React.SetStateAction<string>) => void
+    setDropDownSearch: (value: React.SetStateAction<string>) => void;
 }
 
 
@@ -19,13 +19,15 @@ export const DropDown = ({
                              handleSearchOption,
                              filteredoptions,
                              handleSelectOption,
-                             setDropDownSearch
+                             setDropDownSearch,
                          }: IDropDown) => {
+
 
     const handleClick = (option: TOption) => {
         handleSelectOption(option);
         setDropDownSearch('')
     };
+
 
     return (
         <div className={styles.dropDownWrapper} ref={dropDownRef}>

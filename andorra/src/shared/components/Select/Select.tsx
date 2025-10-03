@@ -18,9 +18,11 @@ const Select = ({renderBody = false}: ISelect) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [selectedOption, setSelectedOption] = useState<TOption[]>([]);
     const [dropDownSearch, setDropDownSearch] = useState<string>('')
+    const [dropDownRootRenderStyles, setDropDownRootRenderStyles] = useState<React.CSSProperties>({});
 
     const selectRef = useRef<HTMLInputElement>(null);
     const dropDownRef = useRef<HTMLDivElement>(null);
+    const selectWrapperRef = useRef<HTMLDivElement>(null);
 
     const filteredoptions = carOptions.filter((option) => option.label.includes(dropDownSearch))
 
@@ -61,7 +63,17 @@ const Select = ({renderBody = false}: ISelect) => {
     };
 
     const handleOpenDropdown = () => {
-        setIsOpen(true)
+        if (selectWrapperRef.current) {
+            const rect = selectWrapperRef.current.getBoundingClientRect();
+            setDropDownRootRenderStyles({
+                position: 'fixed',
+                top: rect.bottom + window.scrollY + 10,
+                left: rect.left + window.scrollX,
+                width: rect.width,
+                zIndex: 10
+            });
+        }
+        setIsOpen(true);
     };
 
     const handleDeleteOption = (option: TOption) => {
@@ -94,9 +106,24 @@ const Select = ({renderBody = false}: ISelect) => {
         };
     }, []);
 
+    useEffect(() => {
+        if (isOpen) {
+            if (selectWrapperRef.current) {
+                const rect = selectWrapperRef.current.getBoundingClientRect();
+                setDropDownRootRenderStyles({
+                    position: 'fixed',
+                    top: rect.bottom + window.scrollY + 10,
+                    left: rect.left + window.scrollX,
+                    width: rect.width,
+                    zIndex: 10
+                });
+            }
+        }
+    }, [selectedOption, isOpen]);
+
     return (
         <div className={styles.root}>
-            <div className={styles.selectWrapper} onClick={() => selectRef.current?.focus()}>
+            <div className={styles.selectWrapper} ref={selectWrapperRef} onClick={() => selectRef.current?.focus()}>
                 <div className={styles.chipWrapper}>
                     {selectedOption && selectedOption.map(option => (
                         <Chip
@@ -120,12 +147,12 @@ const Select = ({renderBody = false}: ISelect) => {
                     onKeyDown={handleKeyDown}
                 />
             </div>
-
             {
                 isOpen && (
-                    renderBody ? (<PortalModal>
+                    renderBody ? (<PortalModal classname={dropDownRootRenderStyles}>
                         {renderDropdown()}
-                    </PortalModal>) : <DropDown filteredoptions={filteredoptions} dropDownRef={dropDownRef} dropDownSearch={dropDownSearch}
+                    </PortalModal>) : <DropDown filteredoptions={filteredoptions} dropDownRef={dropDownRef}
+                                                dropDownSearch={dropDownSearch}
                                                 handleSearchOption={handleSearchOption} handleSelectOption={handleSelectOption}
                                                 setDropDownSearch={setDropDownSearch}/>
 
