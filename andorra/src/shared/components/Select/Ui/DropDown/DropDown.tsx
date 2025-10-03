@@ -28,7 +28,6 @@ export const DropDown = ({
         setDropDownSearch('')
     };
 
-
     return (
         <div className={styles.dropDownWrapper} ref={dropDownRef}>
             <input placeholder={'поиск по опциям'} className={styles.dropDownSearch} type={'text'} value={dropDownSearch}
