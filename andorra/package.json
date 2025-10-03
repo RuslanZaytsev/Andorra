@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "15.3.2",
+    "classnames": "^2.5.1",
+    "mobx": "^6.13.7",
+    "mobx-react-lite": "^4.1.0",
+    "next": "^15.5.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sass": "^1.89.0"

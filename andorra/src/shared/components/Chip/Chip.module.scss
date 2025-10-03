@@ -1,0 +1,32 @@
+.root {
+    width: auto;
+    display: inline-flex;
+    padding: 12px;
+    margin: 0 6px 6px 0;
+    background-color: white;
+    border-radius: 16px;
+    white-space: nowrap;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    font-size: 14px;
+    color: #5B6C87;
+    position: relative;
+    gap: 6px;
+    background-color: lemonchiffon;
+
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(24, 168, 232, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(24, 168, 232, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(24, 168, 232, 0.2);;
+
+}
+
+.icon {
+    padding-top: 4px;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    transform: translateY(-50%);
+    display: flex;
+
+}
