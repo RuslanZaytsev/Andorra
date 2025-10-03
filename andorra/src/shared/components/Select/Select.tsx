@@ -1,13 +1,18 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Input} from "@/shared/components/Input/Input";
 import {TValue} from "@/shared/components/StateInput/types";
-import {carOptions} from "@/shared/components/Select/options";
+import {carOptions} from "@/shared/components/Select/Model/options";
 import styles from './Select.module.scss'
-import {TOption} from "@/shared/components/Select/types";
+import {TOption} from "@/shared/components/Select/Model/types";
 import Chip from "@/shared/components/Chip/Chip";
+import {DropDown} from "@/shared/components/Select/Ui/DropDown/DropDown";
+import {PortalModal} from "@/shared/PortalModal/PortalModal";
 
+interface ISelect {
+    renderBody?: boolean;
+}
 
-const Select = () => {
+const Select = ({renderBody = false}: ISelect) => {
     const initial = ''
     const [state, setState] = useState<TValue>(initial);
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -67,6 +72,21 @@ const Select = () => {
         setDropDownSearch(e.target.value)
     };
 
+    const renderDropdown = () => {
+        return (
+            <DropDown filteredoptions={filteredoptions} dropDownRef={dropDownRef} dropDownSearch={dropDownSearch}
+                      handleSearchOption={handleSearchOption} handleSelectOption={handleSelectOption}
+                      setDropDownSearch={setDropDownSearch}/>
+        )
+    }
+
+    const handleKeyDown = ((e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleAddCustomOption();
+        }
+    });
+
     useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
@@ -97,28 +117,18 @@ const Select = () => {
                     onFocus={handleOpenDropdown}
                     openDropdown={handleOpenDropdown}
                     classname={styles.input}
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                            e.preventDefault();
-                            handleAddCustomOption();
-                        }
-                    }}
+                    onKeyDown={handleKeyDown}
                 />
             </div>
 
             {
                 isOpen && (
-                    <div className={styles.dropDownWrapper} ref={dropDownRef}>
-                        <input placeholder={'поиск по опциям'} className={styles.dropDownSearch} type={'text'} value={dropDownSearch}
-                               onChange={handleSearchOption}/>
-                        <ul className={styles.dropDownUl}>
-                            {filteredoptions.map((option: TOption) => (
-                                <li onClick={() => {
-                                    handleSelectOption(option);
-                                    setDropDownSearch('')
-                                }} key={option.value}>{option.label}</li>))}
-                        </ul>
-                    </div>
+                    renderBody ? (<PortalModal>
+                        {renderDropdown()}
+                    </PortalModal>) : <DropDown filteredoptions={filteredoptions} dropDownRef={dropDownRef} dropDownSearch={dropDownSearch}
+                                                handleSearchOption={handleSearchOption} handleSelectOption={handleSelectOption}
+                                                setDropDownSearch={setDropDownSearch}/>
+
                 )
             }
         </div>
