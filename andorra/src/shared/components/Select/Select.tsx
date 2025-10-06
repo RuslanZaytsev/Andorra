@@ -1,12 +1,14 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Input} from "@/shared/components/Input/Input";
-import {TValue} from "@/shared/components/StateInput/types";
-import {carOptions} from "@/shared/components/Select/Model/options";
-import styles from './Select.module.scss'
-import {TOption} from "@/shared/components/Select/Model/types";
+
 import Chip from "@/shared/components/Chip/Chip";
+import {Input} from "@/shared/components/Input/Input";
+import {carOptions} from "@/shared/components/Select/Model/options";
+import {TOption} from "@/shared/components/Select/Model/types";
 import {DropDown} from "@/shared/components/Select/Ui/DropDown/DropDown";
+import {TValue} from "@/shared/components/StateInput/types";
 import {PortalModal} from "@/shared/PortalModal/PortalModal";
+
+import styles from './Select.module.scss'
 
 interface ISelect {
     renderBody?: boolean;

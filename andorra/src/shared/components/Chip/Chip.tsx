@@ -1,6 +1,8 @@
 import React from 'react';
-import styles from './Chip.module.scss'
+
 import Xcircle from "@/shared/Icons/XCircle";
+
+import styles from './Chip.module.scss'
 
 interface IChip {
     label: string;

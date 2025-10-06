@@ -1,8 +1,10 @@
 'use client'
 
 import {ChangeEvent} from "react";
-import styles from './StateInput.module.scss'
+
 import {TValue} from "@/shared/components/StateInput/types";
+
+import styles from './StateInput.module.scss'
 
 interface IInput {
     label?: string,

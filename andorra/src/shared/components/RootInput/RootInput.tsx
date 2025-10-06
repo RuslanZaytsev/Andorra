@@ -1,5 +1,7 @@
-import {TValue} from "@/shared/components/StateInput/types";
 import classNames from "classnames";
+
+import {TValue} from "@/shared/components/StateInput/types";
+
 import styles from './RootInput.module.scss'
 
 interface IRootInputProps {

@@ -1,6 +1,8 @@
-import styles from "./DropDown.module.scss";
-import {TOption} from "@/shared/components/Select/Model/types";
 import React, {ChangeEvent} from "react";
+
+import {TOption} from "@/shared/components/Select/Model/types";
+
+import styles from "./DropDown.module.scss";
 
 interface IDropDown {
     dropDownRef: React.Ref<HTMLDivElement>

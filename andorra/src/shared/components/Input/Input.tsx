@@ -1,11 +1,14 @@
 'use client'
-import styles from "./Input.module.scss";
-import {EyeOpen} from "@/shared/Icons/EyeOpen";
-import {EyeClose} from "@/shared/Icons/EyeClose";
-import {TValue} from "@/shared/components/StateInput/types";
-import {RootInput} from "@/shared/components/RootInput/RootInput";
-import {formatNumberValue} from "@/shared/utils/utils";
 import React, {useState} from "react";
+
+import {RootInput} from "@/shared/components/RootInput/RootInput";
+import {TValue} from "@/shared/components/StateInput/types";
+import {EyeClose} from "@/shared/Icons/EyeClose";
+import {EyeOpen} from "@/shared/Icons/EyeOpen";
+import {formatNumberValue} from "@/shared/utils/utils";
+
+import styles from "./Input.module.scss";
+
 
 
 interface IInputProps {

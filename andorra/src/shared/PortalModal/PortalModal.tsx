@@ -1,5 +1,6 @@
-import {createPortal} from 'react-dom';
 import {ReactNode} from "react";
+import {createPortal} from 'react-dom';
+
 import styles from './PortalModal.module.scss'
 
 interface IPortalModal {
