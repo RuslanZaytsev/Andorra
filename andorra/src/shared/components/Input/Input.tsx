@@ -1,26 +1,46 @@
 'use client'
-
 import styles from "./Input.module.scss";
 import {EyeOpen} from "@/shared/Icons/EyeOpen";
-import {useState} from "react";
 import {EyeClose} from "@/shared/Icons/EyeClose";
 import {TValue} from "@/shared/components/StateInput/types";
 import {RootInput} from "@/shared/components/RootInput/RootInput";
 import {formatNumberValue} from "@/shared/utils/utils";
+import React, {useState} from "react";
+
 
 interface IInputProps {
     type: "text" | "password" | "number";
     passDifficultylevel?: boolean;
     placeholder?: string;
     value?: TValue;
-    onChange?: (value: TValue) => void;
     defaultValue?: TValue;
+    clear?: () => void;
+    onFocus?: () => void;
+    onBlur?: () => void;
+    ref: React.Ref<HTMLInputElement>
+    onChange?: (value: TValue) => void;
+    openDropdown?: () => void;
+    classname?: string;
+    onKeyDown?: any;
 }
 
-export const Input = ({type, passDifficultylevel, value, onChange, defaultValue = '' as TValue}: IInputProps) => {
+export const Input = ({
+                          type,
+                          passDifficultylevel,
+                          value,
+                          clear,
+                          defaultValue,
+                          placeholder,
+                          onFocus,
+                          onBlur,
+                          onChange,
+                          ref, openDropdown,
+                          classname,
+                          onKeyDown,
+                      }: IInputProps) => {
 
     const [showPassword, setShowPassword] = useState<boolean>(false)
-    const [internalValue, setInternalValue] = useState<TValue>(defaultValue)
+    const [internalValue, setInternalValue] = useState<TValue | undefined>(defaultValue)
     const [inputType, setInputType] = useState<'text' | 'password' | "number">()
     const isControlled = value !== undefined;
     const choiseValue = isControlled ? value : internalValue;
@@ -31,6 +51,11 @@ export const Input = ({type, passDifficultylevel, value, onChange, defaultValue 
     };
 
     const handleCLear = (): void => {
+        if (clear) {
+            clear();
+            return
+        }
+
         const emptyValue = '' as TValue;
         if (isControlled) {
             onChange?.(emptyValue);
@@ -82,14 +107,12 @@ export const Input = ({type, passDifficultylevel, value, onChange, defaultValue 
                 RootInput type={type} choiseValue={choiseValue} onChange={handleChange}
                           keyDownHandler={handleKeyDownNumber}
                           handleClear={handleCLear}
+                          ref={ref}
             />;
         }
 
-        if (type === 'text') {
-            return <RootInput type={type} choiseValue={choiseValue} onChange={handleChange}/>;
-        }
-
-        if (type === 'password') {
+        if (type === 'password'
+        ) {
             return (
                 <div className={styles.wrapper}>
                     <div className={styles.input_wrapper}>
@@ -104,7 +127,7 @@ export const Input = ({type, passDifficultylevel, value, onChange, defaultValue 
                                 onClick={togglePasswordVisibility}
                             />
                         )}
-                        <RootInput type={inputType} choiseValue={choiseValue} onChange={handleChange}/>
+                        <RootInput type={inputType} choiseValue={choiseValue} onChange={handleChange} ref={ref}/>
                     </div>
                     <div className={styles.button}>
                         <button type="button">cгенерировать пароль</button>
@@ -113,6 +136,14 @@ export const Input = ({type, passDifficultylevel, value, onChange, defaultValue 
                     </div>
                 </div>
             )
+        }
+
+        if (type === 'text') {
+            return <RootInput onKeyDownCapture={onKeyDown} classname={classname} type={type} choiseValue={choiseValue}
+                              onChange={handleChange}
+                              handleClear={handleCLear}
+                              placeholder={placeholder} onFocus={onFocus} onBlur={onBlur} ref={ref}
+                              handleOpenDropdown={openDropdown}/>;
         }
     }
 
