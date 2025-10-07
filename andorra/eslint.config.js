@@ -1,6 +1,5 @@
-// eslint.config.js
-const { FlatCompat } = require('@eslint/eslintrc');
-const importPlugin = require('eslint-plugin-import');
+import { FlatCompat } from '@eslint/eslintrc';
+import importPlugin from 'eslint-plugin-import';
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
@@ -15,6 +14,8 @@ module.exports = [
       import: importPlugin,
     },
     rules: {
+      'no-console': ['error', { allow: ['warn', 'error'] }],
+
       'import/order': [
         'error',
         {

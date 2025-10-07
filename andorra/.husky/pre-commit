@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Running pre-commit checks..."
+
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM)
+
+if [ -n "$STAGED_FILES" ]; then
+  echo "Checking staged files for console.log..."
+
+  FOUND_CONSOLE=false
+  for file in $STAGED_FILES; do
+    if [[ $file =~ \.(js|jsx|ts|tsx)$ ]]; then
+      if grep -q "console\.log" "$file"; then
+        echo "❌ ERROR: Found console.log in $file"
+        FOUND_CONSOLE=true
+      fi
+    fi
+  done
+
+  if [ "$FOUND_CONSOLE" = true ]; then
+    echo "🚫 Commit blocked: Please remove all console.log statements"
+    exit 1
+  fi
+fi
+
+echo "✅ No console.log found, running lint-staged..."
+
+npx lint-staged
