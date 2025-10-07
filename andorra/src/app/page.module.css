@@ -1,28 +1,14 @@
-@use "../../src/shared/styles/mixins.scss" as *;
+@use '../../src/shared/styles/mixins.scss' as *;
 
 .page {
-    display: flex;
-    flex-direction: column;
-    width: 1000px;
-    height: 500px;
-    padding: 70px;
-    border: 2px solid #333;
-    border-radius: 8px;
-    background-color: white;
-    margin: 20px auto;
-    gap: 50px;
-
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  height: 500px;
+  padding: 70px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  background-color: white;
+  margin: 20px auto;
+  gap: 50px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

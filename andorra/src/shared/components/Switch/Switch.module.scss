@@ -1,44 +1,43 @@
-
 .switchWrapper {
-    width: 100px;
-    height: 30px;
-    border: 1px solid #ccc;
-    border-radius: 25px;
-    margin: 10px;
-    cursor: pointer;
+  width: 100px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  margin: 10px;
+  cursor: pointer;
 }
 
 .track {
-    width: 100%;
-    height: 100%;
-    background: #ffffff;
-    border-radius: 25px;
-    position: relative;
-    transition: background 0.3s ease;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 25px;
+  position: relative;
+  transition: background 0.3s ease;
 }
 
 .button {
-    width: 26px;
-    height: 26px;
-    left: 1px;
-    top: 1px;
-    background: #DCDCDC;
-    border-radius: 50%;
-    position: absolute;
-    transition: transform 0.3s ease;
+  width: 26px;
+  height: 26px;
+  left: 1px;
+  top: 1px;
+  background: #dcdcdc;
+  border-radius: 50%;
+  position: absolute;
+  transition: transform 0.3s ease;
 
-    -webkit-box-shadow: 0 0 21px 0 rgba(122, 122, 122, 0.2);
-    -moz-box-shadow: 0 0 21px 0 rgba(122, 122, 122, 0.2);
-    box-shadow: 0 0 21px 0 rgba(122, 122, 122, 0.2);
+  -webkit-box-shadow: 0 0 21px 0 rgba(122, 122, 122, 0.2);
+  -moz-box-shadow: 0 0 21px 0 rgba(122, 122, 122, 0.2);
+  box-shadow: 0 0 21px 0 rgba(122, 122, 122, 0.2);
 }
 
 .activeTrack {
-    background-color: #00BFFF;
-    -webkit-box-shadow: 0 0 40px 0 rgba(0, 191, 232, 0.6);
-    -moz-box-shadow: 0 0 40px 0 rgba(0, 191, 232, 0.6);
-    box-shadow: 0 0 40px 0 rgba(0, 191, 232, 0.6);
+  background-color: #00bfff;
+  -webkit-box-shadow: 0 0 40px 0 rgba(0, 191, 232, 0.6);
+  -moz-box-shadow: 0 0 40px 0 rgba(0, 191, 232, 0.6);
+  box-shadow: 0 0 40px 0 rgba(0, 191, 232, 0.6);
 }
 
 .activeButton {
-    transform: translateX(70px);
+  transform: translateX(70px);
 }

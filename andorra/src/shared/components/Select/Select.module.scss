@@ -1,36 +1,33 @@
 .root {
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .selectWrapper {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    border: 1px solid #ccc;
-    padding: 6px 8px;
-    border-radius: 6px;
-    cursor: text;
-    position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: text;
+  position: relative;
 }
 
 .chipWrapper {
-    color: #5B6C87;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+  color: #5b6c87;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .input {
-    flex-grow: 1;
-    min-width: 80px;
-    border: none;
-    outline: none;
-    font-size: 14px;
+  flex-grow: 1;
+  min-width: 80px;
+  border: none;
+  outline: none;
+  font-size: 14px;
 }
-
-
-
