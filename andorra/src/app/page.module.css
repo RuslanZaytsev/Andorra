@@ -1,8 +1,7 @@
 @use "../../src/shared/styles/mixins.scss" as *;
 
 .page {
-    /*display: flex;*/
-    justify-content: center;
+    display: flex;
     flex-direction: column;
     width: 1000px;
     height: 500px;
@@ -11,7 +10,7 @@
     border-radius: 8px;
     background-color: white;
     margin: 20px auto;
-    gap: 30px;
+    gap: 50px;
 
 }
 
