@@ -1,43 +1,42 @@
-
 .dropDownWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    height: 200px;
-    z-index: 10;
-    color: #5B6C87;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 200px;
+  z-index: 10;
+  color: #5b6c87;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: auto;
 }
 
 .dropDownWrapper::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
 .dropDownWrapper::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
 }
 
 .dropDownUl {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    cursor: pointer;
-    gap: 6px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  gap: 6px;
 }
 
 .dropDownSearch {
-    width: 100%;
-    background-color: white;
-    color: #5B6C87;
-    font-size: 14px;
-    border-radius: 6px;
-    border: 2px solid #ccc;
-    font-size: 14px;
-    padding: 6px;
+  width: 100%;
+  background-color: white;
+  color: #5b6c87;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 2px solid #ccc;
+  font-size: 14px;
+  padding: 6px;
 }
